@@ -4,22 +4,22 @@ SHELL	:= cmd
 CC 		:= gcc
 FLAGS 	:= -Wall -std=c99
 
-FOLDER_BUILD 	:= build				# define build folder here
-FOLDER_SOURCE 	:= src					# define source folder here
+FOLDER_BUILD 	:= build
+FOLDER_SOURCE 	:= src
 
-IF_NOT_EXIT			:= @if not exist	# windows command
-IF_EXIT				:= @if exist		# windows command
-RMDIR				:= @rmdir /S /Q		# windows command
-MKDIR				:= @mkdir			# windows command
-MAKE_BUILD_FOLDER	:= $(IF_NOT_EXIT) $(FOLDER_BUILD)/NUL $(MKDIR) $(FOLDER_BUILD)
-REMOVE_BUILD_FOLDER	:= $(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
+IF_NOT_EXIT			:=@if not exist
+IF_EXIT				:=@if exist
+RMDIR				:=@rmdir /S /Q
+MKDIR				:=@mkdir
+MAKE_BUILD_FOLDER	:=$(IF_NOT_EXIT) $(FOLDER_BUILD)/NUL $(MKDIR) $(FOLDER_BUILD)
+REMOVE_BUILD_FOLDER	:=$(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
 
 
-TARGET_NAME 	:= app					# define application name here
-TARGET			:= $(strip $(FOLDER_BUILD))/$(TARGET_NAME)
+TARGET_NAME 	:= app
+TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
 TARGET_RUN		:= @$(TARGET)
 
-FILE_SOURCE		:= $(wildcard $(strip $(FOLDER_SOURCE))/*.c)
+FILE_SOURCE		:= $(wildcard $(FOLDER_SOURCE)/*.c)
 
 EXTENSION_DOT_C	:= .c
 EXTENSION_DOC_O	:= .o
