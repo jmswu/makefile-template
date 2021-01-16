@@ -1,11 +1,21 @@
 # This make file is written for Windows only
 
+
+
+# define build folder here
+FOLDER_BUILD 	:= build
+# define source folder here
+FOLDER_SOURCE 	:= src
+# define application name here
+TARGET_NAME 	:= app
+
+#----------------------------------
+# Don't change anything below here
+#----------------------------------
+
 SHELL	:= cmd
 CC 		:= gcc
 FLAGS 	:= -Wall -std=c99
-
-FOLDER_BUILD 	:= build
-FOLDER_SOURCE 	:= src
 
 IF_NOT_EXIT			:=@if not exist
 IF_EXIT				:=@if exist
@@ -15,7 +25,6 @@ MAKE_BUILD_FOLDER	:=$(IF_NOT_EXIT) $(FOLDER_BUILD)/NUL $(MKDIR) $(FOLDER_BUILD)
 REMOVE_BUILD_FOLDER	:=$(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
 
 
-TARGET_NAME 	:= app
 TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
 TARGET_RUN		:= @$(TARGET)
 
