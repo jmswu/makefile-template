@@ -16,10 +16,10 @@ REMOVE_BUILD_FOLDER	:= $(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
 
 
 TARGET_NAME 	:= app					# define application name here
-TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
+TARGET			:= $(strip $(FOLDER_BUILD))/$(TARGET_NAME)
 TARGET_RUN		:= @$(TARGET)
 
-FILE_SOURCE		:= $(wildcard $(FOLDER_SOURCE)/*.c)
+FILE_SOURCE		:= $(wildcard $(strip $(FOLDER_SOURCE))/*.c)
 
 EXTENSION_DOT_C	:= .c
 EXTENSION_DOC_O	:= .o
@@ -36,3 +36,4 @@ $(TARGET): $(FILE_SOURCE)
 .PHONY: clean
 clean:
 	$(REMOVE_BUILD_FOLDER)
+
