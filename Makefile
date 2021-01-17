@@ -16,7 +16,7 @@ TARGET_NAME 	:= app
 
 SHELL	:= cmd
 CC 		:= gcc
-FLAGS 	:= -Wall -std=c99 -Werror
+FLAGS 	:= -Wall -std=c99 -Werror -Wextra
 
 IF_NOT_EXIT			:=@if not exist
 IF_EXIT				:=@if exist
