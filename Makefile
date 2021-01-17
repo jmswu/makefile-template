@@ -15,7 +15,7 @@ TARGET_NAME 	:= app
 
 SHELL	:= cmd
 CC 		:= gcc
-FLAGS 	:= -Wall -std=c99
+FLAGS 	:= -Wall -std=c99 -Werror
 
 IF_NOT_EXIT			:=@if not exist
 IF_EXIT				:=@if exist
@@ -47,3 +47,5 @@ $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE)/%.c
 clean:
 	$(REMOVE_BUILD_FOLDER)
 
+.DELETE_ON_ERROR:
+	$(REMOVE_BUILD_FOLDER)
