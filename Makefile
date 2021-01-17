@@ -1,7 +1,6 @@
 # This make file is written for Windows only
 
 
-
 # define build folder here
 FOLDER_BUILD 	:= build
 # define source folder here
