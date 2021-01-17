@@ -29,17 +29,18 @@ TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
 TARGET_RUN		:= @$(TARGET)
 
 FILE_SOURCE		:= $(wildcard $(FOLDER_SOURCE)/*.c)
-
-EXTENSION_DOT_C	:= .c
-EXTENSION_DOC_O	:= .o
-_FILE_OBJECT 	:= $(subst $(EXTENSION_DOT_C),$(EXTENSION_DOC_O),$(FILE_SOURCE))
-FILE_OBJECT 	:= $(subst $(FOLDER_SOURCE),$(FOLDER_BUILD),$(_FILE_OBJECT))
+FILE_OBJECT		:= $(patsubst $(FOLDER_SOURCE)/%.c,$(FOLDER_BUILD)/%.o,$(FILE_SOURCE))
 
 # build application
-$(TARGET): $(FILE_SOURCE)
+$(TARGET): $(FILE_OBJECT)
 	$(MAKE_BUILD_FOLDER)
 	$(CC) $(FLAGS) -o $@ $^
 	$(TARGET_RUN)
+
+# build object files
+$(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE)/%.c
+	$(MAKE_BUILD_FOLDER)
+	$(CC) -I$(FOLDER_SOURCE) -c $< -o $@
 
 # clean build folder
 .PHONY: clean
