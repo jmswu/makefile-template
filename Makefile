@@ -16,7 +16,22 @@ TARGET_NAME 	:= app
 
 SHELL	:= cmd
 CC 		:= gcc
-FLAGS 	:= -Wall -std=c99 -Werror -Wextra
+
+CFLAGS  = -std=c99
+CFLAGS += -Wall
+CFLAGS += -Wextra
+CFLAGS += -Wpointer-arith
+CFLAGS += -Wcast-align
+CFLAGS += -Wwrite-strings
+CFLAGS += -Wswitch-default
+CFLAGS += -Wunreachable-code
+CFLAGS += -Winit-self
+CFLAGS += -Wmissing-field-initializers
+CFLAGS += -Wno-unknown-pragmas
+CFLAGS += -Wstrict-prototypes
+CFLAGS += -Wundef
+CFLAGS += -Wold-style-definition
+CFLAGS += -Wno-misleading-indentation
 
 IF_NOT_EXIT			:=@if not exist
 IF_EXIT				:=@if exist
@@ -35,13 +50,13 @@ FILE_OBJECT		:= $(patsubst $(FOLDER_SOURCE)/%.c,$(FOLDER_BUILD)/%.o,$(FILE_SOURC
 # build application
 $(TARGET): $(FILE_OBJECT)
 	$(MAKE_BUILD_FOLDER)
-	$(CC) $(FLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 	$(TARGET_RUN)
 
 # build object files
 $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE)/%.c
 	$(MAKE_BUILD_FOLDER)
-	$(CC) -I$(FOLDER_SOURCE) $(FLAGS) -c $< -o $@
+	$(CC) -I$(FOLDER_SOURCE) $(CFLAGS) -c $< -o $@
 
 # clean build folder
 .PHONY: clean
