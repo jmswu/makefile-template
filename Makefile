@@ -41,7 +41,7 @@ $(TARGET): $(FILE_OBJECT)
 # build object files
 $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE)/%.c
 	$(MAKE_BUILD_FOLDER)
-	$(CC) -I$(FOLDER_SOURCE) -c $< -o $@
+	$(CC) -I$(FOLDER_SOURCE) $(FLAGS) -c $< -o $@
 
 # clean build folder
 .PHONY: clean
