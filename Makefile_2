@@ -44,7 +44,7 @@ REMOVE_BUILD_FOLDER	:=$(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
 
 
 TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
-RUN_TARGET		:= @$(TARGET)
+RUN_TARGET		:= $(TARGET)
 
 FILES_SOURCE_1		:= $(wildcard $(FOLDER_SOURCE_1)/*.c)
 FILES_SOURCE_2		:= $(wildcard $(FOLDER_SOURCE_2)/*.c)
@@ -56,19 +56,19 @@ FILES_OBJECT		 = $(FILES_OBJECT_1) $(FILES_OBJECT_2)
 
 # build application
 $(TARGET): $(FILES_OBJECT)
-	$(MAKE_BUILD_FOLDER)
-	$(CC) $(CFLAGS) -o $@ $^
-	$(RUN_TARGET)
+	@$(MAKE_BUILD_FOLDER)
+	@$(CC) $(CFLAGS) -o $@ $^
+	@$(RUN_TARGET)
 
 # build object files
 $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE_1)/%.c
-	$(MAKE_BUILD_FOLDER)
-	$(CC) -I$(FOLDER_SOURCE_1) -I$(FOLDER_SOURCE_2) -I$(FO) $(CFLAGS) -c $< -o $@
+	@$(MAKE_BUILD_FOLDER)
+	@$(CC) -I$(FOLDER_SOURCE_1) -I$(FOLDER_SOURCE_2) -I$(FO) $(CFLAGS) -c $< -o $@
 
 # build object files
 $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE_2)/%.c
-	$(MAKE_BUILD_FOLDER)
-	$(CC) -I$(FOLDER_SOURCE) -I$(FO) $(CFLAGS) -c $< -o $@
+	@$(MAKE_BUILD_FOLDER)
+	@$(CC) -I$(FOLDER_SOURCE) -I$(FO) $(CFLAGS) -c $< -o $@
 
 # clean build folder
 .PHONY: clean
