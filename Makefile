@@ -43,21 +43,21 @@ REMOVE_BUILD_FOLDER	:=$(IF_EXIT) $(FOLDER_BUILD) $(RMDIR) $(FOLDER_BUILD)
 
 
 TARGET			:= $(FOLDER_BUILD)/$(TARGET_NAME)
-RUN_TARGET		:= @$(TARGET)
+RUN_TARGET		:= $(TARGET)
 
 FILES_SOURCE		:= $(wildcard $(FOLDER_SOURCE)/*.c)
 FILES_OBJECT			:= $(patsubst $(FOLDER_SOURCE)/%.c,$(FOLDER_BUILD)/%.o,$(FILES_SOURCE))
 
 # build application
 $(TARGET): $(FILES_OBJECT)
-	$(MAKE_BUILD_FOLDER)
-	$(CC) $(CFLAGS) -o $@ $^
-	$(RUN_TARGET)
+	@$(MAKE_BUILD_FOLDER)
+	@$(CC) $(CFLAGS) -o $@ $^
+	@$(RUN_TARGET)
 
 # build object files
 $(FOLDER_BUILD)/%.o: $(FOLDER_SOURCE)/%.c
-	$(MAKE_BUILD_FOLDER)
-	$(CC) -I$(FOLDER_SOURCE) $(CFLAGS) -c $< -o $@
+	@$(MAKE_BUILD_FOLDER)
+	@$(CC) -I$(FOLDER_SOURCE) $(CFLAGS) -c $< -o $@
 
 # clean build folder
 .PHONY: clean
